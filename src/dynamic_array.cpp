@@ -29,7 +29,7 @@ namespace assignment {
 
   void DynamicArray::Add(int value) {
     if (size_ == capacity_){
-      capacity_ *= 2;
+      capacity_ += kCapacityGrowthCoefficient;
       capacity = capacity_;
       data__ = new int[capacity_]
       std::copy(data_[0], data_[size_ - 1], data__);
