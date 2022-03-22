@@ -118,7 +118,7 @@ namespace assignment {
   bool DynamicArray::Resize(int new_capacity) {
     if (new_capacity > capacity_){
       int* data__ = new int[new_capacity];
-      std::copy(&data_[0], &data_[size_], *data__);
+      std::copy(&data_[0], &data_[size_], data__);
       delete[] data_;
       data_ = data__;
       capacity_ = new_capacity;
