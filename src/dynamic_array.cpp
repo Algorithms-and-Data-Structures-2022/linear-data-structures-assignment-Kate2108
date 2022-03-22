@@ -36,7 +36,7 @@ namespace assignment {
   }
 
   bool DynamicArray::Insert(int index, int value) {
-    if (index > capacity_ + 1){
+    if (index >= size_ || index < 0) {
       return false;
     }
     if (size_ == capacity_){
@@ -49,6 +49,7 @@ namespace assignment {
     for (int i = index+1; i < size_; i++) {
       data__[i] = data_[i-1];
     }
+    data_ = data__;
     return true;
   }
 
@@ -61,7 +62,7 @@ namespace assignment {
   }
 
   std::optional<int> DynamicArray::Remove(int index) {
-    if (index > capacity_ + 1) {
+    if (index >= size_ || index < 0) {
       return std::nullopt;
     }
     int* data__ = new int[capacity_];
@@ -70,6 +71,8 @@ namespace assignment {
     for (int i = index; i < size_ - 1; i++) {
       data__[i] = data_[i + 1];
     }
+    size_--;
+    data_ = data__;
     return t;
   }
 
