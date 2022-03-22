@@ -29,11 +29,7 @@ namespace assignment {
 
   void DynamicArray::Add(int value) {
     if (size_ == capacity_){
-      capacity_ += kCapacityGrowthCoefficient;
-      int* data__ = new int[capacity_];
-      std::copy(&data_[0], &data_[size_], data__);
-      delete[] data_;
-      data_ = data__;
+      Resize(capacity_ + kCapacityGrowthCoefficient);
     }
     data_[size_] = value;
     size_++;
@@ -44,11 +40,7 @@ namespace assignment {
       return false;
     }
     if (size_ == capacity_){
-      capacity_ += kCapacityGrowthCoefficient;
-      int* data__ = new int[capacity_];
-      std::copy(&data_[0], &data_[size_], data__);
-      delete[] data_;
-      data_ = data__;
+      Resize(capacity_ + kCapacityGrowthCoefficient);
     }
     size_++;
     int* data__ = new int[capacity_];
