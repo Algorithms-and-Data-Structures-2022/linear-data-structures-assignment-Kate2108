@@ -31,7 +31,7 @@ namespace assignment {
     if (size_ == capacity_){
       capacity_ += kCapacityGrowthCoefficient;
       int* data__ = new int[capacity_];
-      std::copy(data_[0], data_[size_ - 1], data__);
+      std::copy(&data_[0], &data_[size_], data__);
       delete[] data_;
       data_ = data__;
     }
@@ -46,17 +46,18 @@ namespace assignment {
     if (size_ == capacity_){
       capacity_ += kCapacityGrowthCoefficient;
       int* data__ = new int[capacity_];
-      std::copy(data_[0], data_[size_ - 1], data__);
+      std::copy(&data_[0], &data_[size_], data__);
       delete[] data_;
       data_ = data__;
     }
     size_++;
     int* data__ = new int[capacity_];
-    std::copy(data_[0], data_[index-1], data__);
+    std::copy(&data_[0], &data_[index], data__);
     data__[index] = value;
     for (int i = index+1; i < size_; i++) {
       data__[i] = data_[i-1];
     }
+    return true;
   }
 
   bool DynamicArray::Set(int index, int new_value) {
@@ -72,7 +73,7 @@ namespace assignment {
       return std::nullopt;
     }
     int* data__ = new int[capacity_];
-    std::copy(data_[0], data_[index - 1], data__);
+    std::copy(&data_[0], &data_[index], data__);
     int t = data_[index];
     for (int i = index; i < size_ - 1; i++) {
       data__[i] = data_[i + 1];
@@ -125,7 +126,7 @@ namespace assignment {
   bool DynamicArray::Resize(int new_capacity) {
     if (new_capacity > capacity_){
       int* data__ = new int[new_capacity];
-      std::copy(data_[0], data_[size_ - 1], data__);
+      std::copy(&data_[0], &data_[size_], *data__);
       delete[] data_;
       data_ = data__;
       capacity_ = new_capacity;
