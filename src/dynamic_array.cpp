@@ -53,7 +53,7 @@ namespace assignment {
   }
 
   bool DynamicArray::Set(int index, int new_value) {
-    if (index > capacity_ + 1){
+    if (index >= size_ || index < 0){
       return false;
     }
     data_[index] = new_value;
@@ -74,12 +74,11 @@ namespace assignment {
   }
 
   void DynamicArray::Clear() {
-    delete[] data_;
     size_ = 0;
   }
 
   std::optional<int> DynamicArray::Get(int index) const {
-    if (index > capacity_ + 1) {
+    if (index >= size_ || index < 0) {
       return std::nullopt;
     }
     return data_[index];
