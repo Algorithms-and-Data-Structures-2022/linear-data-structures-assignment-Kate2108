@@ -36,19 +36,19 @@ namespace assignment {
   }
 
   bool DynamicArray::Insert(int index, int value) {
-    if (index >= size_ || index < 0) {
+    if (index > size_ || index < 0) {
       return false;
     }
     if (size_ == capacity_){
       Resize(capacity_ + kCapacityGrowthCoefficient);
     }
-    size_++;
     int* data__ = new int[capacity_];
     std::copy(&data_[0], &data_[index], data__);
     data__[index] = value;
-    for (int i = index+1; i < size_; i++) {
+    for (int i = index+1; i < capacity_; i++) {
       data__[i] = data_[i-1];
     }
+    size_++;
     data_ = data__;
     return true;
   }
